@@ -28,9 +28,18 @@ namespace PlanetsAndSpaceShips
 
             planetList.Remove("Pluto");
 
-            rockyPlanets.ForEach(planet => Console.WriteLine(planet));
-            Console.WriteLine("---------------");
-            planetList.ForEach(planet => Console.WriteLine(planet));
+            var spacecraft = new Dictionary<string, List<string>>();
+
+            planetList.ForEach(planet => spacecraft.Add(planet, new List<string>() { "Challenger", "Viking" }));
+
+            foreach (var (planet, probes) in spacecraft)
+            {
+                Console.WriteLine(planet);
+                foreach (var orbiter in probes)
+                {
+                    Console.WriteLine($"{orbiter}");
+                }
+            }
         }
     }
 }
