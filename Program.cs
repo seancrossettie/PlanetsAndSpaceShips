@@ -20,24 +20,43 @@ namespace PlanetsAndSpaceShips
             planetList.Insert(2, "Earth");
             planetList.Add("Pluto");
 
+            Console.WriteLine("Here are the planets are our solar system:");
+            planetList.ForEach(planet => Console.WriteLine(planet));
+
+            Console.WriteLine();
+
             List<string> rockyPlanets = new List<string>();
-
             var rock = planetList.GetRange(0, 4);
-
             rockyPlanets.AddRange(rock);
 
+            Console.WriteLine("Here are the rocky planets in our solar system:");
+            rockyPlanets.ForEach(planet => Console.WriteLine(planet));
+
+            Console.WriteLine();
             planetList.Remove("Pluto");
+            Console.WriteLine("Pluto is no longer considered a planet. It has been removed from the list of planets.");
 
-            var spacecraft = new Dictionary<string, List<string>>();
+            var spacecraft = new Dictionary<string, string>();
+            spacecraft.Add("Mercury", "Messenger, Mariner");
+            spacecraft.Add("Venus", "Mariner");
+            spacecraft.Add("Earth", "Pioneer, Mariner, Voyager");
+            spacecraft.Add("Mars", "Mariner, Viking, Dawn");
+            spacecraft.Add("Jupiter", "Pioneer, Voyager, Cassini, New Horizons");
+            spacecraft.Add("Saturn", "Pioneer, Voyager, Cassini");
+            spacecraft.Add("Neptune", "Voyager");
+            spacecraft.Add("Uranus", "Voyager");
 
-            planetList.ForEach(planet => spacecraft.Add(planet, new List<string>() { "Challenger", "Viking" }));
+            Console.WriteLine();
 
-            foreach (var (planet, probes) in spacecraft)
+            foreach (var planet in planetList)
             {
-                Console.WriteLine(planet);
-                foreach (var orbiter in probes)
+                Console.WriteLine($"Here are probes that have orbited {planet}: ");
+                    foreach(var place in spacecraft)
                 {
-                    Console.WriteLine($"{orbiter}");
+                    if (planet == place.Key)
+                    {
+                        Console.WriteLine($"{place.Value}");
+                    }
                 }
             }
         }
